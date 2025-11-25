@@ -3,7 +3,7 @@ import pickle
 import zipfile
 from tqdm import tqdm
 
-# --- CONFIGURATION ---
+# CONFIGURATION
 INPUT_PATH = '/home/motion/Downloads/h36m_sh_conf_cam_source_final.pkl.zip'
 OUTPUT_PATH = 'h36m_train_3d_27frames.npy'
 RECEPTIVE_FIELD = 27  # Size of the sliding window
@@ -56,3 +56,7 @@ for joint, source in tqdm(zip(all_joints, all_sources), total=len(all_joints)):
         
 print(f"✅ Found {len(video_sequences)} unique video clips.")
 
+# 3. Slice and Normalize
+processed_clips = []
+
+print(f"Slicing into windows of {RECEPTIVE_FIELD} frames...")
