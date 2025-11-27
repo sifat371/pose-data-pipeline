@@ -39,9 +39,9 @@ def process_data():
         with z.open(filename) as f:
             raw_data = pickle.load(f)
 
-train_data = raw_data['train']
-all_joints = train_data['joint_2d']
-all_sources = train_data['source']
+    train_data = raw_data['train']
+    all_joints = train_data['joint_2d']
+    all_sources = train_data['source']
 
 print("Grouping frames by video sequence...")
 
