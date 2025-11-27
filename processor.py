@@ -12,7 +12,7 @@ IMG_RES = 1000.0      # Human3.6M Standard Crop Resolution
 
 
 # Normalize X and Y
-def noramlize_pose(pose_arr):
+def normalize_pose(pose_arr):
     norm_pose = (pose_arr / IMG_RES) * 2 -1
     return norm_pose
 
@@ -60,3 +60,10 @@ print(f"✅ Found {len(video_sequences)} unique video clips.")
 processed_clips = []
 
 print(f"Slicing into windows of {RECEPTIVE_FIELD} frames...")
+for source_name, frames in tqdm(video_sequences.items()):
+    frames_arr = np.array(frames)
+
+    frames_norm = normalize_pose(frames_arr)
+
+    clips = get_chunks(frames_norm, RECEPTIVE_FIELD, STRIDE)
+        processed_clips.extend(clips)
